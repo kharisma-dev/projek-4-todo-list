@@ -1,6 +1,8 @@
+// import { useState, useState } from 'react';
 import React, { useState, useEffect } from 'react';
-import TodoItem from './TodoItem';
+// import TodoItem from './TodoItem';
 import { data } from 'autoprefixer';
+import UserDataFetcher from '../UserDataFetcher';
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 // import './App.css'
@@ -41,50 +43,51 @@ function App() {
   //   {id: 2, text: "Membuat Proyek Todo", completed: true},
   //   {id: 3, text: "Riset Challenge P16", completed: true},
   // ]);
-  const [todos, setTodos] = useState (() => {
-    const dataTersimpan = localStorage.getItem('todos');
-    if (dataTersimpan) {
-    return JSON.parse(dataTersimpan);
-  } else {
-    return [];
-  }
-});
+//   const [todos, setTodos] = useState (() => {
+//     const dataTersimpan = localStorage.getItem('todos');
+//     if (dataTersimpan) {
+//     return JSON.parse(dataTersimpan);
+//   } else {
+//     return [];
+//   }
+// });
 
-  const [inputText, setInputText] = useState("");
-  useEffect(() => {
-    localStorage.setItem('todos', JSON.stringify(todos));
-  }, [todos]);
-  const handleSubmit = (event) => {
-    event.preventDefault();
+//   const [inputText, setInputText] = useState("");
+//   useEffect(() => {
+//     localStorage.setItem('todos', JSON.stringify(todos));
+//   }, [todos]);
+//   const handleSubmit = (event) => {
+//     event.preventDefault();
 
-    if (inputText.trim()==="") {
-      alert("Tugas tidak boleh kosong!");
-      return;// Berhenti di sini
-    }
-      const todoBaru = {
-        id: Date.now(), // ID unik sederhana pakai timestamp
-        text: inputText,
-        completed: false
-      };
-      setTodos([...todos, todoBaru]);
-      setInputText("");
-  };
-  const deleteTodo = (id) => {
-    const todosBaru = todos.filter(todo => todo.id !== id);
-    setTodos(todosBaru);
-  };
+//     if (inputText.trim()==="") {
+//       alert("Tugas tidak boleh kosong!");
+//       return;// Berhenti di sini
+//     }
+//       const todoBaru = {
+//         id: Date.now(), // ID unik sederhana pakai timestamp
+//         text: inputText,
+//         completed: false
+//       };
+//       setTodos([...todos, todoBaru]);
+//       setInputText("");
+//   };
+//   const deleteTodo = (id) => {
+//     const todosBaru = todos.filter(todo => todo.id !== id);
+//     setTodos(todosBaru);
+//   };
 
-  const toggleComplete = (id) => {
-    setTodos(
-      todos.map(todo =>
-        todo.id === id ? {...todo, completed: !todo.completed} : todo
-      )
-    );
-  };
+//   const toggleComplete = (id) => {
+//     setTodos(
+//       todos.map(todo =>
+//         todo.id === id ? {...todo, completed: !todo.completed} : todo
+//       )
+//     );
+//   };
 
   return(
     <div className="bg-gray-900 min-h-screen text-white p-8">
-      <div className="max-w-xl mx-auto">
+      <UserDataFetcher />
+      {/* <div className="max-w-xl mx-auto">
       <h1 className="text-4xl font-bold text-center mb-8 text-indigo-400">My Todo List</h1>
       <form onSubmit={handleSubmit} className="flex-gap-2 mb-8">
         <input
@@ -106,14 +109,14 @@ function App() {
           text={todo.text}
           completed={todo.completed}
           onDelete={deleteTodo}
-          onToggle={toggleComplete}/>
-          // <li
+          onToggle={toggleComplete}/> */}
+          {/* // <li
           // key={todo.id}
           // className="flex-justify-between items-center bg-gray-800 p-4 rounded-lg">
           //   <span className={ todo.completed ? "text-lg line-through text-gray-500" : "text-lg" }>{todo.text}</span>
           //   <button className="text-red-500 hover:text-red-700">Hapus</button>
           // </li>
-        ))}
+        // ))} */}
         {/* <li className="flex-justify-between items-center bf-gray-800 p-4 rounded-lg">
           <span className="text-lg">Contoh:Belajar React </span>
           <button className="text-red-500 hover:text-red-700">Hapus</button>
@@ -122,9 +125,9 @@ function App() {
           <span className="text-lg line-through text-gray-500">Contoh:Sudah Selesai </span>
           <button className="text-red-500 hover:text-red-700">Hapus</button>"
         </li> */}
-      </ul>
-      </div>
+      {/* </ul>
+      </div> */}
     </div> 
-  )
+  );
 }
 export default App

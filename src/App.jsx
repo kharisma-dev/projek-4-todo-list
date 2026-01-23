@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import TodoItem from './TodoItem';
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
@@ -38,17 +38,50 @@ function App() {
   const [todos, setTodos]=useState([
     {id: 1,text: "Belajar React State",completed:  true},
     {id: 2, text: "Membuat Proyek Todo", completed: true},
-    {id: 3, text: "Riset Challenge P16", completed: false},
+    {id: 3, text: "Riset Challenge P16", completed: true},
   ]);
+
+  const [inputText, setInputText] = useState("");
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    if (inputText.trim()==="") {
+      alert("Tugas tidak boleh kosong!");
+      return;// Berhenti di sini
+    }
+      const todoBaru = {
+        id: Date.now(), // ID unik sederhana pakai timestamp
+        text: inputText,
+        completed: false
+      };
+      setTodos([...todos, todoBaru]);
+      setInputText("");
+  };
+  const deleteTodo = (id) => {
+    const todosBaru = todos.filter(todo => todo.id !== id);
+    setTodos(todosBaru);
+  };
+
+  const toggleComplete = (id) => {
+    setTodos(
+      todos.map(todo =>
+        todo.id === id ? {...todo, completed: !todo.completed} : todo
+      )
+    );
+  };
+
   return(
     <div className="bg-gray-900 min-h-screen text-white p-8">
       <div className="max-w-xl mx-auto">
       <h1 className="text-4xl font-bold text-center mb-8 text-indigo-400">My Todo List</h1>
-      <form className="flex-gap-2 mb-8">
+      <form onSubmit={handleSubmit} className="flex-gap-2 mb-8">
         <input
         type="text"
         placeholder="Tambahkan tugas baru..."
-        className="flex-grow p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"/>
+        className="flex-grow p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        value={inputText}
+        onChange={(e) => setInputText(e.target.value)}
+        />
         <button
         type="submit"
         className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg">Tambah</button>
@@ -57,8 +90,11 @@ function App() {
         {todos.map((todo)=>(
           <TodoItem
           key={todo.id}
+          id={todo.id}
           text={todo.text}
-          completed={todo.completed}/>
+          completed={todo.completed}
+          onDelete={deleteTodo}
+          onToggle={toggleComplete}/>
           // <li
           // key={todo.id}
           // className="flex-justify-between items-center bg-gray-800 p-4 rounded-lg">

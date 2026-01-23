@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TodoItem from './TodoItem';
+import { data } from 'autoprefixer';
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 // import './App.css'
@@ -35,13 +36,24 @@ import TodoItem from './TodoItem';
 
 // export default App
 function App() {
-  const [todos, setTodos]=useState([
-    {id: 1,text: "Belajar React State",completed:  true},
-    {id: 2, text: "Membuat Proyek Todo", completed: true},
-    {id: 3, text: "Riset Challenge P16", completed: true},
-  ]);
+  // const [todos, setTodos]=useState([
+  //   {id: 1,text: "Belajar React State",completed:  true},
+  //   {id: 2, text: "Membuat Proyek Todo", completed: true},
+  //   {id: 3, text: "Riset Challenge P16", completed: true},
+  // ]);
+  const [todos, setTodos] = useState (() => {
+    const dataTersimpan = localStorage.getItem('todos');
+    if (dataTersimpan) {
+    return JSON.parse(dataTersimpan);
+  } else {
+    return [];
+  }
+});
 
   const [inputText, setInputText] = useState("");
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
   const handleSubmit = (event) => {
     event.preventDefault();
 

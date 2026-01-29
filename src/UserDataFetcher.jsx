@@ -1,6 +1,8 @@
+import React, { useState, useEffect } from 'react';
+
 function UserDataFetcher() {
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -11,18 +13,18 @@ function UserDataFetcher() {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-        
+
         const jsonData = await response.json();
-        setData(jsonData); 
+        setData(jsonData);
       } catch (e) {
-        setError(e); 
+        setError(e);
       } finally {
-        setLoading(false); 
+        setLoading(false);
       }
     };
 
     fetchData();
-  }, []); 
+  }, []);
 
   if (loading) {
     return <p className="text-white text-center">Loading data pengguna...</p>;

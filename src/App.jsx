@@ -54,11 +54,9 @@ function App() {
   };
 
   return (
-    <div className="bg-gray-900 min-h-screen text-white p-8">
+    <div className="bg-gray-900 min-h-screen text-white p-4 md:p-8 py-12">
       {/* User Data Section */}
-      <div className="mb-8">
-        <UserDataFetcher />
-      </div>
+      <UserDataFetcher />
 
       {/* Todo List Section - Hidden */}
       {/* <div className="max-w-xl mx-auto">

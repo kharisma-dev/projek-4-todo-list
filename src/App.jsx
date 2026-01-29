@@ -1,63 +1,7 @@
 import React, { useState, useEffect } from 'react';
-<<<<<<< HEAD
-// import TodoItem from './TodoItem';
-import { data } from 'autoprefixer';
 import UserDataFetcher from './UserDataFetcher';
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-// import './App.css'
-=======
-import UserDataFetcher from './UserDataFetcher';
->>>>>>> 1ba59b46408ab01c8afc2eafa9e186e47b91ea26
 
 function App() {
-<<<<<<< HEAD
-const [todos, setTodos]=useState(()=> {
-  //   {id: 1,text: "Belajar React State",completed:  true},
-  //   {id: 2, text: "Membuat Proyek Todo", completed: true},
-  //   {id: 3, text: "Riset Challenge P16", completed: true},
-// ]);
-//   const [todos, setTodos] = useState (() => {
-//     const dataTersimpan = localStorage.getItem('todos');
-//     if (dataTersimpan) {
-//     return JSON.parse(dataTersimpan);
-//   } else {
-//     return [];
-//   }
-});
-
-const [inputText, setInputText] = useState("");
-useEffect(() => {
-//     localStorage.setItem('todos', JSON.stringify(todos));
-}, [todos]);
-const handleSubmit = (event) => {
-//     event.preventDefault();
-
-//     if (inputText.trim()==="") {
-//       alert("Tugas tidak boleh kosong!");
-//       return;// Berhenti di sini
-//     }
-//       const todoBaru = {
-//         id: Date.now(), // ID unik sederhana pakai timestamp
-//         text: inputText,
-//         completed: false
-};
-//       setTodos([...todos, todoBaru]);
-//       setInputText("");
-//   };
-const deleteTodo = (id) => {
-//     const todosBaru = todos.filter(todo => todo.id !== id);
-//     setTodos(todosBaru);
-};
-
-const toggleComplete = (id) => {
-//     setTodos(
-//       todos.map(todo =>
-//         todo.id === id ? {...todo, completed: !todo.completed} : todo
-//       )
-//     );
-};
-=======
   // Initialize todos from localStorage or use empty array
   const [todos, setTodos] = useState(() => {
     const dataTersimpan = localStorage.getItem('todos');
@@ -78,7 +22,6 @@ const toggleComplete = (id) => {
   // Handle form submission to add new todo
   const handleSubmit = (event) => {
     event.preventDefault();
->>>>>>> 1ba59b46408ab01c8afc2eafa9e186e47b91ea26
 
     if (inputText.trim() === "") {
       alert("Tugas tidak boleh kosong!");

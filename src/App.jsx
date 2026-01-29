@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 // import TodoItem from './TodoItem';
 import { data } from 'autoprefixer';
-import UserDataFetcher from '../UserDataFetcher';
+import UserDataFetcher from './UserDataFetcher';
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 // import './App.css'
@@ -38,11 +38,11 @@ import UserDataFetcher from '../UserDataFetcher';
 
 // export default App
 function App() {
-  // const [todos, setTodos]=useState([
+const [todos, setTodos]=useState(()=> {
   //   {id: 1,text: "Belajar React State",completed:  true},
   //   {id: 2, text: "Membuat Proyek Todo", completed: true},
   //   {id: 3, text: "Riset Challenge P16", completed: true},
-  // ]);
+// ]);
 //   const [todos, setTodos] = useState (() => {
 //     const dataTersimpan = localStorage.getItem('todos');
 //     if (dataTersimpan) {
@@ -50,13 +50,13 @@ function App() {
 //   } else {
 //     return [];
 //   }
-// });
+});
 
-//   const [inputText, setInputText] = useState("");
-//   useEffect(() => {
+const [inputText, setInputText] = useState("");
+useEffect(() => {
 //     localStorage.setItem('todos', JSON.stringify(todos));
-//   }, [todos]);
-//   const handleSubmit = (event) => {
+}, [todos]);
+const handleSubmit = (event) => {
 //     event.preventDefault();
 
 //     if (inputText.trim()==="") {
@@ -67,22 +67,22 @@ function App() {
 //         id: Date.now(), // ID unik sederhana pakai timestamp
 //         text: inputText,
 //         completed: false
-//       };
+};
 //       setTodos([...todos, todoBaru]);
 //       setInputText("");
 //   };
-//   const deleteTodo = (id) => {
+const deleteTodo = (id) => {
 //     const todosBaru = todos.filter(todo => todo.id !== id);
 //     setTodos(todosBaru);
-//   };
+};
 
-//   const toggleComplete = (id) => {
+const toggleComplete = (id) => {
 //     setTodos(
 //       todos.map(todo =>
 //         todo.id === id ? {...todo, completed: !todo.completed} : todo
 //       )
 //     );
-//   };
+};
 
   return(
     <div className="bg-gray-900 min-h-screen text-white p-8">
